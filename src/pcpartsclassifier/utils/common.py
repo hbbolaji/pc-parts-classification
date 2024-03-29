@@ -1,5 +1,5 @@
 import os
-from box import BoxValueError
+# from box import BoxValueError
 import yaml
 from pcpartsclassifier import logger
 import json
@@ -17,7 +17,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
       content = yaml.safe_load(yaml_file)
       logger.info(f'yaml file: {path_to_yaml} loaded successfull')
       return ConfigBox(content)
-  except BoxValueError:
+  except ValueError:
     raise ValueError('yaml file is empty')
   except Exception as e:
     raise e
@@ -25,7 +25,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
 @ensure_annotations
 def create_directories(path_to_directories: list, verbose=True):
   for path in path_to_directories:
-    os.makedirs(path)
+    os.makedirs(path, exist_ok=True)
     if verbose:
       logger.info(f'created directory at {path}')
 
