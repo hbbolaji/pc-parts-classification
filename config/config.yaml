@@ -5,3 +5,7 @@ data_ingestion:
   source_url: https://www.kaggle.com/datasets/asaniczka/pc-parts-images-dataset-classification/download?datasetVersionNumber=1
   local_zip_file: artifacts/data_ingestion/datasets.zip
   unzip_dir: artifacts/data_ingestion
+
+base_model:
+  root_dir: artifacts/base_model
+  updated_base_model: artifacts/base_model/base_model_updated.pth
