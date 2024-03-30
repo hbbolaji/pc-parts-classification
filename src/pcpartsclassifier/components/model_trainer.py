@@ -90,7 +90,7 @@ class Training:
       test_loss /= len(self.test_loader)
       test_ac = test_acc / len(self.test_loader)
 
-      logger.info(f'Test - Epoch: {epoch} / {self.config.epochs} | Accuracy: {100 * test_ac:.2f}% | Loss: {test_loss:.3f}')
+      logger.info(f'Test - Epoch: {epoch + 1} / {self.config.epochs} | Accuracy: {100 * test_ac:.2f}% | Loss: {test_loss:.3f}')
   
   def save_model(self):
     create_directories([self.config.root_dir])
