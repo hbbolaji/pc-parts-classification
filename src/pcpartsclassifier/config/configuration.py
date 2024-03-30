@@ -1,6 +1,6 @@
 from pcpartsclassifier.constants import *
 from pcpartsclassifier.utils.common import read_yaml, create_directories
-from pcpartsclassifier.entity.config_entity import DataIngestionConfig
+from pcpartsclassifier.entity.config_entity import DataIngestionConfig, BaseModelConfig
 
 class ConfigurationManager:
   def __init__(self,
@@ -22,3 +22,13 @@ class ConfigurationManager:
     )
 
     return data_ingestion_config
+  
+  def get_base_model_config(self) -> BaseModelConfig:
+    config = self.config.base_model
+    base_model_config = BaseModelConfig(
+      root_dir=config.root_dir,
+      untrained_base_model=config.untrained_base_model,
+      trained_base_model=config.trained_base_model,
+      classes = self.params.CLASSES
+    )
+    return base_model_config

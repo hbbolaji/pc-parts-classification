@@ -7,3 +7,10 @@ class DataIngestionConfig:
   source_url: str
   local_zip_file: Path
   unzip_dir: Path
+
+@dataclass(frozen=True)
+class BaseModelConfig:
+  root_dir: Path
+  untrained_base_model: Path
+  trained_base_model: Path
+  classes: int
