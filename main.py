@@ -1,6 +1,7 @@
 from pcpartsclassifier import logger
 from pcpartsclassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from pcpartsclassifier.pipeline.stage_02_base_model import BaseModelTrainingPipeline
+from pcpartsclassifier.pipeline.stage_03_model_trainer import ModelTrainerTrainingPipeline
 
 STAGE_NAME = "Data Ingestion Stage"
 
@@ -9,7 +10,7 @@ if __name__ == '__main__':
     logger.info(f'>>>>>>> {STAGE_NAME} started <<<<<<<')
     obj = DataIngestionTrainingPipeline()
     obj.main()
-    logger.info(f'>>>>>>> {STAGE_NAME} completed <<<<<<< \n \n x===================x')
+    logger.info(f'>>>>>>> {STAGE_NAME} completed <<<<<<< \n x===================x')
   except Exception as e:
     logger.exception(e)
     raise e
@@ -25,4 +26,15 @@ if __name__ == '__main__':
     logger.info(f'>>>>>>>>> {STAGE_NAME} completed <<<<<<<<<< \n x===================x')
   except Exception as e:
     logger.exception(e)
+    raise e
+
+STAGE_NAME = 'Training'
+
+if __name__ == '__main__':
+  try:
+    logger.info(f'>>>>>>> {STAGE_NAME} started <<<<<<<<')
+    obj = ModelTrainerTrainingPipeline()
+    obj.main()
+    logger.info(f'>>>>>>> {STAGE_NAME} completed <<<<<<<<<< \n x===================x')
+  except Exception as e:
     raise e

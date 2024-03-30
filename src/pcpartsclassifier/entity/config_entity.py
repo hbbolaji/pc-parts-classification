@@ -14,3 +14,13 @@ class BaseModelConfig:
   untrained_base_model: Path
   trained_base_model: Path
   classes: int
+
+@dataclass(frozen=True)
+class TrainingConfig:
+  root_dir: Path
+  data_dir: Path
+  trained_model_path: Path
+  epochs: int
+  learning_rate: float
+  batch_size: int
+  data_name: str

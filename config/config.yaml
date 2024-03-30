@@ -10,3 +10,7 @@ base_model:
   root_dir: artifacts/base_model
   untrained_base_model: artifacts/base_model/base_model_untrained.pth
   trained_base_model: artifacts/base_model/base_model_updated.pth
+
+training:
+  root_dir: artifacts/training
+  trained_model_path: artifacts/training/trained_model.pth
