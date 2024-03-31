@@ -2,7 +2,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_url: https://www.kaggle.com/datasets/asaniczka/pc-parts-images-dataset-classification/download?datasetVersionNumber=1
+  source_url: https://storage.googleapis.com/kaggle-data-sets/4404888/7565076/bundle/archive.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20240331%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20240331T112951Z&X-Goog-Expires=259200&X-Goog-SignedHeaders=host&X-Goog-Signature=0e335265177de0a31ef0e183197a6945552433403cd995263a37f903d8718260883084d07a61e20cf6eb9163f6df48a4394401ac111138a014707626b10b953a77d1ae99e8d67c1b469ebf991617bceea45d2f7c8ffd09f1c1ea7a6142300749824823a5eba987ee00489e81a1c943d73fe33a85864af002313a92fc8b4ccc84edf54966319a76aa1475c318ad6edd1f2f61f21d43533364b100fc87748ee5eab38782f9c0c2b3f2c5c3fcdc0c68649dd7d0727eed9201b1b9b99733c5b86eccdae4885154e1bab6aadd3d6d6266ba03dc3364547ea18bdf10cc7a2ee8ca6e6a678a9ce1ef5170f36ad559f5a1a0c0dc01e16736ef21be308cb63e187d5c214a
   local_zip_file: artifacts/data_ingestion/datasets.zip
   unzip_dir: artifacts/data_ingestion
 

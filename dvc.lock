@@ -1,0 +1,96 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/pcpartsclassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 64bb0134e049b20e18f4cee325f1f730
+      size: 1483
+    - path: src/pcpartsclassifier/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 595b521de3b6df6c6392a5704548750d
+      size: 838
+    outs:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: a2f3962468b17fd06b601e967f9297e2.dir
+      size: 72074681
+      nfiles: 3280
+  base_model:
+    cmd: python src/pcpartsclassifier/pipeline/stage_02_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 64bb0134e049b20e18f4cee325f1f730
+      size: 1483
+    - path: src/pcpartsclassifier/pipeline/stage_02_base_model.py
+      hash: md5
+      md5: 4a06b6dba72c99e1f1db222f05b0dc77
+      size: 796
+    params:
+      params.yaml:
+        CLASSES: 14
+        DATA_NAME: pc_parts
+    outs:
+    - path: artifacts/base_model
+      hash: md5
+      md5: 89a8cd503a3645406cd3e12fbb947590.dir
+      size: 16399187
+      nfiles: 1
+  training:
+    cmd: python src/pcpartsclassifier/pipeline/stage_03_model_trainer.py
+    deps:
+    - path: artifacts/data_ingestion/pc_parts
+      hash: md5
+      md5: b247519a8c1a3acff47aaad582d3d777.dir
+      size: 36400286
+      nfiles: 3279
+    - path: config/config.yaml
+      hash: md5
+      md5: 64bb0134e049b20e18f4cee325f1f730
+      size: 1483
+    - path: src/pcpartsclassifier/pipeline/stage_03_model_trainer.py
+      hash: md5
+      md5: 9323f4e3b29ce33010bc457e3902d57c
+      size: 823
+    params:
+      params.yaml:
+        BATCH_SIZE: 32
+        DATA_NAME: pc_parts
+        EPOCHS: 2
+        LEARNING_RATE: 0.001
+    outs:
+    - path: artifacts/training/trained_model.pth
+      hash: md5
+      md5: 7d64f7775be3d48c23b5dedbc13cfbe2
+      size: 16400813
+  evaluation:
+    cmd: python src/pcpartsclassifier/pipeline/stage_04_model_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/pc_parts
+      hash: md5
+      md5: b247519a8c1a3acff47aaad582d3d777.dir
+      size: 36400286
+      nfiles: 3279
+    - path: artifacts/training/trained_model.pth
+      hash: md5
+      md5: 7d64f7775be3d48c23b5dedbc13cfbe2
+      size: 16400813
+    - path: config/config.yaml
+      hash: md5
+      md5: 64bb0134e049b20e18f4cee325f1f730
+      size: 1483
+    - path: src/pcpartsclassifier/pipeline/stage_04_model_evaluation.py
+      hash: md5
+      md5: 6be2cd6c722ddcc3788064270aa15cd3
+      size: 832
+    params:
+      params.yaml:
+        BATCH_SIZE: 32
+        DATA_NAME: pc_parts
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 0b9f24ea3b3c37b9ae464eba5f862524
+      size: 69
