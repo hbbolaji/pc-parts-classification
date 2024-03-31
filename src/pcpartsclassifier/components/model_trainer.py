@@ -23,14 +23,17 @@ class Training:
   def data_preparation(self):
     dataset = datasets.ImageFolder(root=self.data_dir,
                                    transform=self.transform)
-    train_set, test_set = random_split(dataset=dataset,
-                                       lengths=[0.7, 0.3])
+    train_set, validation_set, test_set = random_split(dataset=dataset,
+                                       lengths=[0.6, 0.1, 0.3])
     self.train_loader = DataLoader(dataset=train_set,
-                              batch_size=self.config.batch_size,
-                              shuffle=True)
+                                   batch_size=self.config.batch_size,
+                                   shuffle=True)
+    self.validation_loader = DataLoader(dataset=validation_set,
+                                        batch_size=self.config.batch_size,
+                                        shuffle=True)
     self.test_loader = DataLoader(dataset=test_set,
-                            batch_size=self.config.batch_size,
-                            shuffle=False)
+                                  batch_size=self.config.batch_size,
+                                  shuffle=False)
     self.classes = dataset.classes
   
   def accuracy(self, logits, labels):

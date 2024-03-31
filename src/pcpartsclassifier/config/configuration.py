@@ -1,6 +1,6 @@
 from pcpartsclassifier.constants import *
 from pcpartsclassifier.utils.common import read_yaml, create_directories
-from pcpartsclassifier.entity.config_entity import DataIngestionConfig, BaseModelConfig, TrainingConfig
+from pcpartsclassifier.entity.config_entity import DataIngestionConfig, BaseModelConfig, TrainingConfig, EvaluationConfig
 
 class ConfigurationManager:
   def __init__(self,
@@ -45,3 +45,13 @@ class ConfigurationManager:
       data_name=self.params.DATA_NAME
     )
     return training_config
+  
+  def get_evaluation_config(self) -> EvaluationConfig:
+    config = self.config.evaluation
+    evaluation_config = EvaluationConfig(
+      root_dir = config.root_dir,
+      model_path = config.model_path,
+      all_params = self.params,
+      mlflow_uri = config.mlflow_uri
+    )
+    return evaluation_config

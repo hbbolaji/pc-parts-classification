@@ -14,3 +14,8 @@ base_model:
 training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/trained_model.pth
+
+evaluation:
+  root_dir: artifacts/evaluation
+  model_path: artifacts/training/trained_model.pth
+  mlflow_uri: https://dagshub.com/hbbolaji/pc-parts-classification.mlflow

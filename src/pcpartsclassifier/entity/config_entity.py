@@ -24,3 +24,10 @@ class TrainingConfig:
   learning_rate: float
   batch_size: int
   data_name: str
+
+@dataclass(frozen=True)
+class EvaluationConfig:
+  root_dir: Path
+  model_path: Path
+  all_params: dict
+  mlflow_uri: str
