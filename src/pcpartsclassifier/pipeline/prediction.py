@@ -28,7 +28,7 @@ class PredictionPipeline:
   
   def get_prediction(self):
     model = BaseModel(config=self.config_manager.get_base_model_config())
-    model.load_state_dict(torch.load('artifacts/training/trained_model.pth'))
+    model.load_state_dict(torch.load('model/trained_model.pth'))
     model.eval()
     logits = model(self.image)
     preds = torch.argmax(logits, dim=1)
