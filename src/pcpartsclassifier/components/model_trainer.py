@@ -76,7 +76,7 @@ class Training:
 
   def train(self):
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(params=self.model.parameters(),
+    optimizer = torch.optim.SGD(params=self.model.parameters(),
                                  lr=self.config.learning_rate)
     self.data_preparation()
     for epoch in range(self.config.epochs):
